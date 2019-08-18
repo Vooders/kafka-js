@@ -14,7 +14,7 @@
     "prepublish": "npm run build"
   },
   "bin": {
-    "hello": "./dist/bin/helloWorld.js"
+    "kafka": "./dist/bin/kafka.js"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.24",
