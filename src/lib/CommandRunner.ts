@@ -1,19 +1,15 @@
-import { spawn } from 'child_process'
+import { exec } from 'child_process'
+import * as util from 'util'
+
 const chalk = require('chalk')
 
-export function run (command: string, ...args: string[]) {
-  console.log(chalk.bold(`${command} ${args.join(' ')}`))
-  const cmd = spawn(command, args)
+const execute = util.promisify(exec)
 
-  cmd.stdout.on('data', (data) => {
-    console.log(chalk.green(data))
-  })
-
-  cmd.stderr.on('data', (data) => {
-    console.log(chalk.red(data))
-  })
-
-  cmd.on('close', (code) => {
-    console.log(chalk.bold(chalk.white(code)))
-  })
+export async function runCommand (command: string) {
+  console.log(`running: ${chalk.bold(command)}`)
+  const { stdout, stderr } = await execute(command)
+  return {
+    stdout,
+    stderr
+  }
 }

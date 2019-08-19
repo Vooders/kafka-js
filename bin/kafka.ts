@@ -3,11 +3,11 @@
 import * as Yargs from 'yargs'
 import { KafkaCommand } from '../src/cli/KafkaCommand'
 import { ConsoleLogger } from '../src/logging/ConsoleLogger'
-import { helloDefinition } from '../src/cli/commands/helloDefinition'
+import { listTopicsDefinition } from '../src/cli/commands/listTopicsDefinition'
 
 const logger = new ConsoleLogger()
 
 Yargs.demandCommand(1) // tslint:disable-line
   .strict()
-  .command(new KafkaCommand(logger, helloDefinition))
+  .command(new KafkaCommand(logger, listTopicsDefinition))
   .argv
